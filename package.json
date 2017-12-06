@@ -1,0 +1,28 @@
+{
+  "name": "chess",
+  "version": "1.0.0",
+  "description": "A chess engine suited for use on the web",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "eslint": "^4.10.0",
+    "eslint-plugin-react": "^7.4.0",
+    "jsonlint": "^1.6.2",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
+    "codecov": "^3.0.0",
+    "coveralls": "^3.0.0",
+    "stylelint": "^8.2.0"
+  },
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha test/**/*.js"
+  },
+  "keywords": [
+    "chess",
+    "game",
+    "oop"
+  ],
+  "author": "Christofer Jungberg",
+  "license": "ISC"
+}
