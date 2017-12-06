@@ -14,7 +14,8 @@
     "stylelint": "^8.2.0"
   },
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha test/**/*.js"
+    "test": "nyc --reporter=html --reporter=text mocha test/**/*.js",
+    "test-scrutinizer": "nyc --all --reporter=clover mocha test/**/*.js"
   },
   "keywords": [
     "chess",
