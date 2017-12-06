@@ -62,17 +62,17 @@ class Game {
         this.gameBoard["H"][5] = this.p2.queen;
     }
 
-    start() {
-        while (true) {
-            checkTurn();
-            board.move();
-
-            legalMove && checkDiagonal
-
-            game.turn = next;
-
-        }
-    }
+    // start() {
+    //     while (true) {
+    //         checkTurn();
+    //         board.move();
+    //
+    //         legalMove && checkDiagonal
+    //
+    //         game.turn = next;
+    //
+    //     }
+    // }
 }
 
-module.exports = Game;
+module.exports = new Game();

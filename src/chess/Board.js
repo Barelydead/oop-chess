@@ -23,6 +23,8 @@ class Board {
             "H": [],
         };
 
+        this.rows = [null, "A", "B", "C", "D", "E", "F", "G", "H"];
+
         this.setUpEmptyTable();
     }
 
@@ -53,7 +55,34 @@ class Board {
      * @returns {mixed} - true if free or square Coo if false
      */
     checkRow(x, y, nx, ny) {
+        const direction = x == nx ? "horisontal" : "vertical";
+        let row, list, xNumber, nxNumber, i;
 
+        if (direction === "horisontal") {
+            row = this.board[x];
+            // Slice array to get squares to check
+            list = y < ny ? row.slice(y + 1, ny) : row.slice(ny + 1, y);
+        } else {
+            row = [];
+            for (i = 1; i < this.rows.length; i++) {
+                row.push(this.board[this.rows[i]][y]);
+            }
+            // get numeric value of x nx
+            xNumber = this.rows.indexOf(x);
+            nxNumber = this.rows.indexOf(nx);
+
+            // Slice array to get squares to check
+            list = xNumber < nxNumber ? row.slice(xNumber + 1, nxNumber) : row.slice(nxNumber + 1, xNumber);
+        }
+
+        // loop squares and check type
+        for (i = 0; i < list.length; i++) {
+            if (typeof list[i] !== "string") {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

@@ -1,8 +1,8 @@
 {
   "name": "oop-chess",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A chess engine suited for use on the web",
-  "main": "./src/Game.js",
+  "main": "./src/chess/Game.js",
   "directories": {
     "test": "test"
   },
