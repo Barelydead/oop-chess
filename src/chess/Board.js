@@ -151,6 +151,21 @@ class Board {
 
 
     /**
+     * Check that destination is no of the same color as mover
+     * @return {bool}
+     */
+    checkDestination(turn, x, y) {
+        const piece = this.getSquare(x, y);
+
+        if (turn === piece.color) {
+            return false;
+        }
+
+        return true;
+    }
+
+
+    /**
      * Asciify board
      *
      * @returns {String}

@@ -22,6 +22,7 @@ class Game {
         this.gameBoard = this.board.board;
         this.turn = this.p1.color;
         this.lastMove = null;
+        this.NrOfmoves = 0;
     }
 
 
@@ -71,20 +72,34 @@ class Game {
 
     /**
     * Move a boardpiece and call helpfunctions to check legality of the move
-    * @return {bool}, True if move executed correct otherwise False
+    * @return {Bool}, False if illegal move
     */
     movePiece(x, y, nx, ny) {
         const piece = this.board.getSquare(x, y);
 
         if (piece.color !== this.turn) {
+            console.log("Wrong player")
             return false
         }
+
+        if (!this.board.checkDestination(this.turn, nx, ny)) {
+            console.log("destination is not valid")
+            return false
+        }
+
+        // if (piece.symbol === "P" || piece.symbol === "K" || piece.symbol === "N") {
+        //
+        // } else if (piece.symbol === "B") {
+        //     this.board.checkDiagonal(x, y, nx, ny)
+        // } else if (piece.symbol === "R") {
+        //     this.board.checkRow(x, y, nx, ny)
+        // }
 
         this.board.move(x, y, nx, ny)
         this.lastMove = [x, y, nx, ny]
         this.nextPlayer();
+        this.NrOfmoves += 1;
         console.log(this.status());
-        return true
     }
 
     /**

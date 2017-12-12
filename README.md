@@ -10,21 +10,24 @@ This is a Oop-style chess engine that can be used as a backend for a web chess g
 
 ### Usage
 
-**Use the modules in an ongoing project**
-npm install --save oop-chess
-
 #### Example code
 ```javascript
-const game = require("oop-chess");
+const Game = require("../src/chess/Game");
 
-game.init();
+Game.init();
 
-game.board.getAsciiBoard()
-console.log(game.turn);
+console.log(Game.status());
+Game.movePiece("B", 1, "C", 1)
+console.log(Game.board.getAsciiBoard())
 
-game.move("A", 1, "A", 5);
+Game.movePiece("G", 1, "F", 1)
+console.log(Game.board.getAsciiBoard())
+
+Game.movePiece("A", 2, "C", 3)
+console.log(Game.board.getAsciiBoard())
 
 ```
 
 
 ### Install
+`npm install --save oop-chess`
