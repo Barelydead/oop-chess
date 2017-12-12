@@ -1,6 +1,7 @@
 const Game = require("../src/chess/Game");
 
 Game.init();
+console.log(Game.status());
+Game.movePiece("B", 1, "C", 1)
 
-console.log(Game.board.getAsciiBoard());
-console.log(Game.board.checkRow("B", 4, "B", 4));
+Game.movePiece("G", 1, "F", 1)

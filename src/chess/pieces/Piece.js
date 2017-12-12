@@ -18,7 +18,7 @@ class Piece {
         this.color;
     }
 
-    canMove() {
+    legalMove() {
 
     }
 }

@@ -20,14 +20,20 @@ class Game {
         this.p2 = new Player("black", "player2");
         this.board = new Board();
         this.gameBoard = this.board.board;
-        this.turn = this.p1;
+        this.turn = this.p1.color;
+        this.lastMove = null;
     }
 
 
     /**
      * Init board with all player pieces
+     * @param {object} - Preset gameboard Object
      */
     init(preset = null) {
+
+        if (typeof preset !== "null") {
+            this.bameBoard = preset;
+        }
         //Pawns
         for (let i = 1; i <= 8; i++) {
             this.gameBoard["B"][i] = this.p1.pawns[i - 1];
@@ -62,17 +68,45 @@ class Game {
         this.gameBoard["H"][5] = this.p2.queen;
     }
 
-    // start() {
-    //     while (true) {
-    //         checkTurn();
-    //         board.move();
-    //
-    //         legalMove && checkDiagonal
-    //
-    //         game.turn = next;
-    //
-    //     }
-    // }
+
+    /**
+    * Move a boardpiece and call helpfunctions to check legality of the move
+    * @return {bool}, True if move executed correct otherwise False
+    */
+    movePiece(x, y, nx, ny) {
+        const piece = this.board.getSquare(x, y);
+
+        if (piece.color !== this.turn) {
+            return false
+        }
+
+        this.board.move(x, y, nx, ny)
+        this.lastMove = [x, y, nx, ny]
+        this.nextPlayer();
+        console.log(this.status());
+        return true
+    }
+
+    /**
+    * Set next player
+    * @return {null}
+    */
+    nextPlayer() {
+        this.turn = this.turn === "black" ? "white" : "black";
+    }
+
+    /**
+    * Show the status of the game
+    * @return {object}
+    */
+    status() {
+        return {
+            "Player to act": this.turn,
+            "White name": this.p1.name,
+            "Black name": this.p2.name,
+            "last move": this.lastMove
+        }
+    }
 }
 
 module.exports = new Game();

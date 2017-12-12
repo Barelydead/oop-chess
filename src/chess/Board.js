@@ -88,10 +88,32 @@ class Board {
     /**
      * Check if the is anything blocking the path between 2 squares
      *
-     * @returns {mixed} - true if free or square Coo if false
+     * @returns {bool} - true if free else false
      */
     checkDiagonal(x, y, nx, ny) {
+        let xNumber, nxNumber, steps;
+        steps = Math.abs(y - ny);
+        xNumber = this.rows.indexOf(x)
+        nxNumber = this.rows.indexOf(nx)
 
+        if (xNumber < nxNumber && y < ny || xNumber > nxNumber && y > ny) {
+            y = y > ny ? ny : y;
+            xNumber = xNumber > nxNumber ? nxNumber : xNumber;
+            for (let i = 1; i < steps; i++) {
+                if (typeof this.board[this.rows[xNumber + i]][y + i] == "object") {
+                    return false
+                }
+            }
+        } else {
+            y = y < ny ? ny : y;
+            xNumber = xNumber > nxNumber ? nxNumber : xNumber;
+            for (let i = 1; i < steps; i++) {
+                if (typeof this.board[this.rows[xNumber + i]][y - i] == "object") {
+                    return false
+                }
+            }
+        }
+        return true
     }
 
     /**

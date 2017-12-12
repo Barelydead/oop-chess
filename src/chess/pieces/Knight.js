@@ -18,7 +18,7 @@ class Knight {
         this.color = color;
     }
 
-    move() {
+    legalMove() {
 
     }
 }

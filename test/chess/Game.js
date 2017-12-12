@@ -22,12 +22,19 @@ describe('Game module', function() {
             assert.equal(game.p2.bishops.length, 2);
         });
 
-        it("return true if open false if closed", function() {
+        it("Row return true if open false if closed", function() {
             // B2 to F2 open
             assert.equal(game.board.checkRow("B", 2, "F", 2), true)
 
             // B2 to B5 Closed
             assert.equal(game.board.checkRow("B", 5, "B", 2), false)
+        });
+
+
+        it("Diagonal return true if open false if closed", function() {
+            assert.equal(game.board.checkDiagonal("B", 2, "D", 4), true)
+
+            assert.equal(game.board.checkDiagonal("A", 1, "C", 3), false)
         });
     });
 });

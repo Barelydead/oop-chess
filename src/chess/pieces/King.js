@@ -18,7 +18,7 @@ class King {
         this.color = color;
     }
 
-    canMove(xy, newXy) {
+    legalMove(x, y, nx, ny) {
 
     }
 }

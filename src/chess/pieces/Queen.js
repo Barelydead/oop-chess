@@ -18,8 +18,12 @@ class Queen {
         this.color = color;
     }
 
-    move() {
+    legalMove(x, y, nx, ny) {
+        if (x == nx && y !== ny || x !== nx && y == ny) {
+            return true
+        }
 
+        return false;
     }
 }
 

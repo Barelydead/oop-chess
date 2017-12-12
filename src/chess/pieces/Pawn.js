@@ -18,7 +18,7 @@ class Pawn {
         this.color = color;
     }
 
-    move() {
+    legalMove() {
 
     }
 }
