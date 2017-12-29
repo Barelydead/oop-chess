@@ -2,4 +2,4 @@
 /node_modules
 /coverage
 /.nyc_output
-/old_chess
+/src/old_chess
