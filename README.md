@@ -12,19 +12,19 @@ This is a Oop-style chess engine that can be used as a backend for a web chess g
 
 #### Example code
 ```javascript
-const Game = require("../src/chess/Game");
+const Game = require("oop-chess");
 
-Game.init();
+Game.init("andersson", "johnsson");
 
 console.log(Game.status());
 Game.movePiece("B", 1, "C", 1)
-console.log(Game.board.getAsciiBoard())
 
+console.log(Game.status());
 Game.movePiece("G", 1, "F", 1)
-console.log(Game.board.getAsciiBoard())
+console.log(Game.status());
 
 Game.movePiece("A", 2, "C", 3)
-console.log(Game.board.getAsciiBoard())
+console.log(Game.status());
 
 ```
 

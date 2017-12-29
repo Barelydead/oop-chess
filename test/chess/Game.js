@@ -7,9 +7,8 @@ describe('Game module', function() {
             game.init();
             assert.equal(game.p1.color, "white");
             assert.equal(game.p2.color, "black");
-            assert.equal(game.p2.color, "black");
 
-            let square = game.board.getSquare("B", 1);
+            let square = game.board.getSquare("B", 1).piece;
             let pawn = game.p1.pawns[0];
 
             assert.equal(square, pawn);

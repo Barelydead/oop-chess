@@ -35,7 +35,7 @@ class Board {
     setUpEmptyTable() {
         for (var key in this.board) {
             this.board[key] =
-            [{"row": key}, {"square": key + 1}, {"square": key + 2}, {"square": key + 3}, {"square": key + 4}, {"square": key + 5}, {"square": key + 6}, {"square": key + 7}, {"square": key + 8}];
+            [key, key + 1, key + 2, key + 3, key + 4, key + 5, key + 6, key + 7, key + 8];
         }
     }
 
@@ -72,13 +72,12 @@ class Board {
             nxNumber = this.rows.indexOf(nx);
 
             // Slice array to get squares to check
-            list = xNumber < nxNumber ? row.slice(xNumber, nxNumber - 1) : row.slice(nxNumber, xNumber - 1);
+            list = xNumber < nxNumber ? row.slice(xNumber + 1, nxNumber) : row.slice(nxNumber + 1, xNumber);
         }
 
-        console.log(list);
         // loop squares and check type
         for (i = 0; i < list.length; i++) {
-            if (list[i].piece.symbol !== "E") {
+            if (typeof list[i] !== "string") {
                 return false;
             }
         }
@@ -101,7 +100,7 @@ class Board {
             y = y > ny ? ny : y;
             xNumber = xNumber > nxNumber ? nxNumber : xNumber;
             for (let i = 1; i < steps; i++) {
-                if (this.board[this.rows[xNumber + i]][y + i].piece.symbol !== "E") {
+                if (typeof this.board[this.rows[xNumber + i]][y + i] == "object") {
                     return false
                 }
             }
@@ -109,7 +108,7 @@ class Board {
             y = y < ny ? ny : y;
             xNumber = xNumber > nxNumber ? nxNumber : xNumber;
             for (let i = 1; i < steps; i++) {
-                if (this.board[this.rows[xNumber + i]][y - i].piece.symbol !== "E") {
+                if (typeof this.board[this.rows[xNumber + i]][y - i] == "object") {
                     return false
                 }
             }
@@ -133,9 +132,7 @@ class Board {
      * @returns {null}
      */
     updateSquare(row, col, value) {
-        console.log(value);
-
-        this.board[row][col].piece = value;
+        this.board[row][col] = value;
     }
 
 
@@ -146,10 +143,10 @@ class Board {
      *
      */
     move(x, y, nx, ny) {
-        let square = this.getSquare(x, y);
+        const piece = this.getSquare(x, y);
 
-        this.updateSquare(nx, ny, square.piece);
-        this.updateSquare(x, y, {color: "", symbol: "E"});
+        this.updateSquare(x, y, x + y);
+        this.updateSquare(nx, ny, piece);
     }
 
 
@@ -158,9 +155,9 @@ class Board {
      * @return {bool}
      */
     checkDestination(turn, x, y) {
-        const square = this.getSquare(x, y);
+        const piece = this.getSquare(x, y);
 
-        if (turn === square.piece.color) {
+        if (turn === piece.color) {
             return false;
         }
 
@@ -169,19 +166,24 @@ class Board {
 
 
     /**
-     * Return board as array
-     * @return {array}
+     * Asciify board
+     *
+     * @returns {String}
      */
-    getBoardArray() {
-        let boardArray = [];
+    getAsciiBoard() {
+        let ascii = "";
 
         for (var key in this.board) {
-            for (let i = 1; i < this.board[key].length; i++) {
-                boardArray.push(this.board[key][i]);
+            for (let i = 0; i < this.board[key].length; i++) {
+                if (typeof this.board[key][i] === "object") {
+                    ascii += this.board[key][i].symbol + this.board[key][i].color[0] +  " | "
+                } else {
+                    ascii += this.board[key][i] +  " | ";
+                }
             }
+            ascii += "\n";
         }
-
-        return boardArray;
+        return ascii;
     }
 }
 

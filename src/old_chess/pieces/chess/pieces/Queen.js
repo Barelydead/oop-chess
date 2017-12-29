@@ -1,23 +1,21 @@
 /**
- * Rook module
+ * Queen module
  * @module
  */
 "use strict";
 
 /**
- * Class with Rook logic
+ * Class with Queen logic
  */
-class Rook {
+class Queen {
     /**
      * init
      */
     constructor(color) {
-        this.symbol = "R";
+        this.symbol = "Q";
         this.moved = 0;
         this.active = true;
         this.color = color;
-        this.rows = [null, "A", "B", "C", "D", "E", "F", "G", "H"];
-        this.img = this.color === "white" ? "w-rook" : "b-rook";
     }
 
     legalMove(x, y, nx, ny) {
@@ -30,4 +28,4 @@ class Rook {
 }
 
 
-module.exports = Rook;
+module.exports = Queen;

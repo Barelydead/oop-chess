@@ -16,8 +16,6 @@ class Rook {
         this.moved = 0;
         this.active = true;
         this.color = color;
-        this.rows = [null, "A", "B", "C", "D", "E", "F", "G", "H"];
-        this.img = this.color === "white" ? "w-rook" : "b-rook";
     }
 
     legalMove(x, y, nx, ny) {
